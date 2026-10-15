@@ -1,0 +1,30 @@
+# Use an explicit Ubuntu base image bundled with Java 17 for ARM64/Apple Silicon
+FROM eclipse-temurin:17-jdk-jammy
+
+# Install Xvfb and necessary rendering libraries for headless GUI support
+RUN apt-get update && apt-get install -y \
+    xvfb \
+    wget \
+    libxtst6 \
+    libx11-6 \
+    libxrender1 \
+    libxi6 \
+    fontconfig \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set Cytoscape Version
+ENV CYTOSCAPE_VERSION=3.10.4
+WORKDIR /usr/src/app
+
+# Download the universal Linux distribution
+RUN wget -q https://github.com{CYTOSCAPE_VERSION}/cytoscape-${CYTOSCAPE_VERSION}.tar.gz \
+    && tar -xzf cytoscape-${CYTOSCAPE_VERSION}.tar.gz --strip-components=1 \
+    && rm cytoscape-${CYTOSCAPE_VERSION}.tar.gz
+
+# Set up Virtual Display environment variables
+ENV DISPLAY=:99
+# Inform Java AWT framework that it must bind to the Xvfb virtual display buffer
+ENV JAVA_AWT_HEADLESS=false
+
+# Spin up Xvfb in the background, give it 2 seconds to initialize, and launch Cytoscape
+ENTRYPOINT ["sh", "-c", "Xvfb :99 -screen 0 1280x1024x24 & sleep 2 && ./cytoscape.sh \"$@\""]

@@ -25,8 +25,8 @@ COPY poetry.lock pyproject.toml ./
 RUN poetry install --no-interaction --no-ansi
  
 COPY manage.py .
-COPY snapms_site /usr/src/app/snapms_site
-COPY snapms /usr/src/app/snapms
+COPY snapmf_site /usr/src/app/snapmf_site
+COPY snapmf /usr/src/app/snapmf
 
 EXPOSE 8000
 CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]

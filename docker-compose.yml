@@ -48,7 +48,7 @@ services:
       - "./db:/usr/src/app/db"
       - "./data:/usr/src/app/data"
     labels:
-      - traefik.http.routers.snapms.rule=PathPrefix(`/`)
+      - traefik.http.routers.snapmf.rule=PathPrefix(`/`)
 
   worker:
     image: ghcr.io/liningtonlab/snapms:latest

@@ -59,7 +59,7 @@ __1.__ Redis - Docker
 You can easily start Redis in a docker container locally with 
 
 ```bash
-docker run -itd -p 6379:6379 --name snapms-redis redis
+docker run -itd -p 6379:6379 --name snapmf-redis redis
 ```
 
 __2.__ Cytoscape

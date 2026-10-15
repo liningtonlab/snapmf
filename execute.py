@@ -7,9 +7,9 @@ groups from chemical similarity methods
 import sys
 from pathlib import Path
 
-from snapms.atlas_tools.atlas_import import import_atlas
-from snapms.config import AtlasFilter, Parameters
-from snapms.core import create_gnps_network_annotations, network_from_mass_list
+from snapmf.atlas_tools.atlas_import import import_atlas
+from snapmf.config import AtlasFilter, Parameters
+from snapmf.core import create_gnps_network_annotations, network_from_mass_list
 
 # current working directory for data file paths
 CWD = Path(__file__).parent
