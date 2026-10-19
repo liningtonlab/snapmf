@@ -71,14 +71,15 @@ def match_compound_network(
                     index,
                     {
                         "coconut_id": compound.coconut_id,
-                        "exact_mass": compound.exact_mass,
+                        "exact_mass": str(compound.exact_mass),
                         "smiles": compound.smiles,
                         "compound_name": compound.friendly_name(),
                         "coconut_url": compound.coconut_url,
-                        "original_gnps_mass": compound.mass,
+                        "original_gnps_mass": str(compound.mass),
                         "compound_group": compound.compound_number,
                         "adduct": adduct,
                         "origin_organism_type": "Unknown",
+                        "molecular_formula": compound.molecular_formula,
                     },
                 )
             )
@@ -102,6 +103,7 @@ def match_compound_network(
                         "compound_group": compound.compound_number,
                         "adduct": adduct,
                         "origin_organism_type": compound.origin_organism_type,
+                        "molecular_formula": compound.molecular_formula,
                     },
                 )
             )
